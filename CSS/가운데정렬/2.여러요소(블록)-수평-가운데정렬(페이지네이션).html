@@ -1,0 +1,76 @@
+<!-- block 요소를 inline-block으로 바꿔서 해결하는 방법 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .dot {
+      width: 50px;
+      height: 50px;
+      background-color: orangered;
+      color: #fff;
+      text-align: center;
+      line-height: 50px;
+      border-radius: 50%;
+    }
+
+    .wrapper {
+      /*  */
+      text-align: center;
+      /*  */
+    }
+
+    .after .dot {
+      background-color: blue;
+
+      /*  */
+      display: inline-block;
+      margin: 0 -4px;
+      /*  */
+    }
+  </style>
+</head>
+
+<body>
+  <div>Before</div>
+  <div class="before">
+    <div class="dot">1</div>
+    <div class="dot">1</div>
+    <div class="dot">2</div>
+    <div class="dot">3</div>
+    <div class="dot">4</div>
+    <div class="dot">5</div>
+    <div class="dot">6</div>
+    <div class="dot">7</div>
+  </div>
+  <br><br><br><br>
+
+  <div>After</div>
+  <div class="after wrapper">
+    <div class="dot">1</div>
+    <div class="dot">1</div>
+    <div class="dot">2</div>
+    <div class="dot">3</div>
+    <div class="dot">4</div>
+    <div class="dot">5</div>
+    <div class="dot">6</div>
+    <div class="dot">7</div>
+  </div>
+  <div>
+    * dot 개수가 달라지고, 크기가 달라져도 전체 가운데 정렬을 유지할 수 있는 방법 (페이지네이션 가능) * <br>
+    1. display: inline-block<br>
+    2. 1로 인해 텍스트 취급을 받게되어, 부모인 wrapper에 text-align: center을 주어서 가운데 정렬을 할 수 있다. (margin: 0 auto는 사용 X)<br>
+    3. dot 들 사이에 있는 공백은 왜 생기는가? 인라인블록으로 인해 dot들이 텍스트화 됨 -> 엔터를 띄어쓰기 한칸으로 인식하기 때문에 생김 -> 해결 방법 dot에 margin: 0 -4px (-4px인
+    이유는 폰트사이즈에 비례해서 책정되는 값임. 16px일 때 공백은 4px 된다고 생각하면 될듯. -> -0.25em을 주면 자동으로 공백크기가 계산된다.)
+    <br>
+    <br>
+    * 참고: https://www.youtube.com/watch?v=9aDke7HDqfs
+  </div>
+</body>
+
+</html>
